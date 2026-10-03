@@ -1,163 +1,491 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uma Declaração</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Para Dudz 🌸</title>
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #8b0000, #c0392b);
-      overflow: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family: 'Montserrat', sans-serif;
+
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.95), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(255,220,225,.55), transparent 28%),
+        linear-gradient(135deg, #eaf5ff 0%, #fff7f7 50%, #fde8eb 100%);
+
+      color: #4f4545;
     }
 
-    /* Container dos corações */
-    .hearts {
+    /* ==============================
+       FUNDO DECORATIVO
+    ============================== */
+
+    .background-glow {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
+
+      background:
+        radial-gradient(circle at 10% 90%, rgba(255, 182, 193, .18), transparent 22%),
+        radial-gradient(circle at 90% 10%, rgba(173, 216, 230, .22), transparent 25%);
     }
 
-    /* Coração */
-    .heart {
+    /* Flores decorativas nos cantos */
+
+    .flower-corner {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      font-size: 85px;
+      opacity: .35;
+      filter: blur(.2px);
+    }
+
+    .flower-left {
+      top: 15px;
+      left: -18px;
+      transform: rotate(-20deg);
+    }
+
+    .flower-right {
+      bottom: 5px;
+      right: -15px;
+      transform: rotate(20deg);
+    }
+
+    /* ==============================
+       PÉTALAS
+    ============================== */
+
+    .petals {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .petal {
       position: absolute;
-      width: 18px;
-      height: 18px;
-      background-color: #f7b2c4;
-      transform: rotate(45deg);
-      animation: floatUp linear infinite;
-      opacity: 0.8;
+      top: -50px;
+
+      width: 16px;
+      height: 24px;
+
+      background: linear-gradient(
+        135deg,
+        #ffc8d2,
+        #f49cab
+      );
+
+      border-radius: 80% 0 80% 0;
+
+      opacity: .7;
+
+      animation:
+        fall linear forwards,
+        sway ease-in-out infinite alternate;
     }
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background-color: #f7b2c4;
-      border-radius: 50%;
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(115vh) rotate(420deg);
+      }
     }
 
-    .heart::before {
-      top: -9px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: -9px;
-      top: 0;
-    }
-
-    @keyframes floatUp {
+    @keyframes sway {
       from {
-        transform: translateY(100vh) rotate(45deg);
-        opacity: 0;
+        margin-left: -35px;
       }
+
       to {
-        transform: translateY(-10vh) rotate(45deg);
-        opacity: 1;
+        margin-left: 35px;
       }
     }
 
-    /* Card principal */
-    .card {
+    /* ==============================
+       CONTEÚDO
+    ============================== */
+
+    .page {
       position: relative;
       z-index: 1;
-      background: rgba(255,255,255,0.92);
-      padding: 30px;
-      max-width: 600px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 50px 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 760px;
+
+      padding: 55px 55px 45px;
+
+      background: rgba(255, 255, 255, .82);
+
+      border: 1px solid rgba(255,255,255,.85);
+      border-radius: 30px;
+
+      box-shadow:
+        0 25px 70px rgba(102, 75, 75, .13),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
       text-align: center;
-      backdrop-filter: blur(4px);
+
+      animation: appear 1.3s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Pequena flor superior */
+
+    .top-flower {
+      font-size: 30px;
+      margin-bottom: 10px;
+
+      animation: flowerFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes flowerFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
     }
 
     h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #6b3fa0;
+      margin: 0 0 30px;
+
+      font-family: 'Caveat', cursive;
+      font-size: 52px;
+      font-weight: 600;
+
+      color: #a05e68;
+
+      line-height: 1.1;
     }
 
-    p {
-      font-size: 18px;
-      line-height: 1.7;
-      color: #444;
+    .line {
+      width: 70px;
+      height: 2px;
+
+      margin: 0 auto 35px;
+
+      border-radius: 10px;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #dfa1aa,
+        transparent
+      );
     }
 
-    .assinatura {
+    .message {
+      font-size: 17px;
+      line-height: 1.9;
+
+      color: #514848;
+
+      text-align: left;
+    }
+
+    .message p {
+      margin: 0 0 24px;
+    }
+
+    .message p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      color: #a65f69;
+      font-weight: 600;
+    }
+
+    /* ==============================
+       ASSINATURA
+    ============================== */
+
+    .signature {
+      margin-top: 40px;
+      text-align: right;
+
+      color: #93616a;
+    }
+
+    .signature span {
+      display: block;
+
+      margin-top: 3px;
+
+      font-family: 'Caveat', cursive;
+      font-size: 36px;
+
+      color: #a75e69;
+    }
+
+    .little-heart {
+      display: inline-block;
+
+      margin-left: 4px;
+
+      animation: pulse 1.7s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    /* ==============================
+       FINAL
+    ============================== */
+
+    .final-decoration {
       margin-top: 30px;
-      font-size: 16px;
-      color: #777;
+
+      font-size: 22px;
+
+      color: #d58c98;
+
+      letter-spacing: 8px;
+    }
+
+    /* ==============================
+       CELULAR
+    ============================== */
+
+    @media (max-width: 650px) {
+
+      .page {
+        padding: 25px 14px;
+        align-items: flex-start;
+      }
+
+      .card {
+        padding: 38px 24px 34px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .message {
+        font-size: 15.5px;
+        line-height: 1.8;
+      }
+
+      .signature span {
+        font-size: 32px;
+      }
+
+      .flower-corner {
+        font-size: 60px;
+        opacity: .25;
+      }
     }
   </style>
 </head>
 
+
 <body>
 
-  <!-- Corações animados -->
-  <div class="hearts"></div>
+  <!-- Fundo -->
+  <div class="background-glow"></div>
 
-  <!-- Conteúdo -->
-  <div class="card">
-    <a href="https://youtu.be/OfkdzEa44TE?t=68" target="_blank"
-       style="display:inline-block; margin-bottom:20px; padding:12px 22px; background:#b11226; color:#fff; text-decoration:none; border-radius:30px; font-size:16px; box-shadow:0 6px 18px rgba(0,0,0,0.25);">
-       🎵 Ouça enquanto lê
-    </a>
+  <!-- Flores decorativas -->
+  <div class="flower-corner flower-left">🌸</div>
+  <div class="flower-corner flower-right">🌷</div>
 
-    <h1>Linda</h1>
+  <!-- Local onde as pétalas serão criadas -->
+  <div class="petals" id="petals"></div>
 
-    <p>
-      Nem tudo na vida é simples, e nem sempre os caminhos são claros.
-      Mesmo assim, o que sinto é real e verdadeiro.
-      <br /><br />
-      Ainda estou tentando entender tudo, mas queria que você soubesse
-      que existe amor, cuidado e respeito aqui.
-      <br /><br />
-      Por isso, preciso que você me diga com sinceridade qual é o lugar que me cabe na sua vida:
-      se sou amiga, namorada, esposa… ou se não sou mais nada.
-      <br /><br />
-      Porque a forma como escolhemos ou deixamos de escolher é o que dita o jogo da vida.
-      A indecisão também é uma decisão, e ela define caminhos, consequências e destinos.
-    </p>
 
-    <div class="assinatura">
-      Com carinho,<br />
-      Luana
-    </div>
-  </div>
+  <main class="page">
 
-  <!-- JavaScript dos corações -->
+    <article class="card">
+
+      <div class="top-flower">🌸</div>
+
+      <h1>Olá Dudz, tudo bem?</h1>
+
+      <div class="line"></div>
+
+
+      <div class="message">
+
+        <p>
+          Gostaria de deixar registrado algumas palavras que não costumo
+          dizer com frequência ein kkkkkk.
+        </p>
+
+        <p>
+          Primeiramente <span class="highlight">parabéns</span> pela jovem
+          que vem se tornando, cheia de sonhos, vontade de viver, cheia de
+          princípios e opiniões. E eu espero, de coração, que a vida te
+          devolva todo o bem que existe em você. Que Deus te abençoe, te dê
+          muita saúde, sabedoria e discernimento.
+        </p>
+
+        <p>
+          Quero que você saiba que eu torço muito pela sua felicidade.
+          Torço para que você realize seus sonhos, viva momentos incríveis,
+          encontre motivos para sorrir todos os dias e tenha sempre pessoas
+          ao seu lado que reconheçam o quanto
+          <span class="highlight">você é especial.</span>
+        </p>
+
+        <p>
+          Acredite sempre em você, assim como todos nós acreditamos.
+          Fico feliz de assistir de perto suas conquistas, de observar você
+          se moldando para vida.
+        </p>
+
+        <p>
+          E, acima de tudo, você pode contar comigo. Nos momentos bons,
+          nos difíceis, para conversar, rir ou desabafar.
+        </p>
+
+        <p>
+          Que a vida seja muito gentil com você e te proporcione toda a
+          felicidade que você merece.
+        </p>
+
+      </div>
+
+
+      <div class="signature">
+        Com carinho,
+        <span>
+          Lulis 😘
+          <span class="little-heart">♡</span>
+        </span>
+      </div>
+
+      <div class="final-decoration">
+        · 🌸 ·
+      </div>
+
+    </article>
+
+  </main>
+
+
   <script>
-    const heartsContainer = document.querySelector('.hearts');
 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
+    const petalsContainer = document.getElementById('petals');
 
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (5 + Math.random() * 6) + 's';
-      heart.style.width = heart.style.height = (12 + Math.random() * 18) + 'px';
-      heart.style.opacity = Math.random();
+    function createPetal() {
 
-      heartsContainer.appendChild(heart);
+      const petal = document.createElement('div');
 
+      petal.classList.add('petal');
+
+      /* Posição horizontal aleatória */
+      petal.style.left = Math.random() * 100 + 'vw';
+
+      /* Tamanho aleatório */
+      const size = 10 + Math.random() * 13;
+
+      petal.style.width = size + 'px';
+      petal.style.height = size * 1.45 + 'px';
+
+      /* Velocidade da queda */
+      const duration = 8 + Math.random() * 8;
+
+      petal.style.animationDuration =
+        duration + 's, ' +
+        (2 + Math.random() * 3) + 's';
+
+      /* Transparência */
+      petal.style.opacity =
+        0.35 + Math.random() * 0.45;
+
+      /* Algumas pétalas mais claras */
+      const colors = [
+        ['#ffd0d8', '#f6a8b5'],
+        ['#ffe1e6', '#efb5be'],
+        ['#fbc2cc', '#ed91a1'],
+        ['#fff0f2', '#f5bac4']
+      ];
+
+      const color =
+        colors[Math.floor(Math.random() * colors.length)];
+
+      petal.style.background =
+        `linear-gradient(135deg, ${color[0]}, ${color[1]})`;
+
+      petalsContainer.appendChild(petal);
+
+      /* Remove a pétala depois da animação */
       setTimeout(() => {
-        heart.remove();
-      }, 12000);
+        petal.remove();
+      }, duration * 1000);
+
     }
 
-    setInterval(createHeart, 350);
+    /* Cria pétalas continuamente */
+    setInterval(createPetal, 650);
+
+    /* Algumas pétalas já aparecem quando abre */
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createPetal, i * 250);
+    }
+
   </script>
 
 </body>
 </html>
-
